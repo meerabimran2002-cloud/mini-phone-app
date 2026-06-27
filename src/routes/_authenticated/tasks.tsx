@@ -77,16 +77,27 @@ function TasksPage() {
         <p className="mt-1 text-sm text-muted-foreground">Plan, prioritize and ship your day.</p>
       </header>
 
-      <div className="rounded-2xl card-elevated p-5">
-        <form onSubmit={(e) => { e.preventDefault(); add.mutate(); }} className="grid gap-3 md:grid-cols-[1fr_auto_auto_auto_auto]">
-          <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t("addTask")} className="rounded-xl border border-input bg-background px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-ring" />
-          <select value={priority} onChange={(e) => setPriority(e.target.value as any)} className="rounded-xl border border-input bg-background px-3 py-2.5 text-sm">
-            <option value="low">{t("low")}</option><option value="medium">{t("medium")}</option><option value="high">{t("high")}</option>
-          </select>
-          <input value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Category" className="rounded-xl border border-input bg-background px-3 py-2.5 text-sm w-32" />
-          <input type="datetime-local" value={due} onChange={(e) => setDue(e.target.value)} className="rounded-xl border border-input bg-background px-3 py-2.5 text-sm" />
-          <button type="submit" disabled={add.isPending} className="flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-50">
-            <Plus className="h-4 w-4" /> {t("add")}
+      <div className="rounded-2xl card-elevated p-4 sm:p-5">
+        <form onSubmit={(e) => { e.preventDefault(); add.mutate(); }} className="space-y-3">
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder={t("addTask")}
+            className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring"
+          />
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+            <select value={priority} onChange={(e) => setPriority(e.target.value as any)} className="rounded-xl border border-input bg-background px-3 py-2.5 text-sm">
+              <option value="low">{t("low")}</option><option value="medium">{t("medium")}</option><option value="high">{t("high")}</option>
+            </select>
+            <input value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Category" className="rounded-xl border border-input bg-background px-3 py-2.5 text-sm" />
+            <input type="datetime-local" value={due} onChange={(e) => setDue(e.target.value)} className="col-span-2 sm:col-span-1 rounded-xl border border-input bg-background px-3 py-2.5 text-sm" />
+          </div>
+          <button
+            type="submit"
+            disabled={add.isPending || !title.trim()}
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-lg transition hover:opacity-90 active:scale-[0.98] disabled:opacity-50"
+          >
+            <Plus className="h-4 w-4" /> {add.isPending ? "Adding…" : t("add")}
           </button>
         </form>
       </div>
