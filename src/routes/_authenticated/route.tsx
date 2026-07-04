@@ -56,7 +56,7 @@ function AppShell() {
           <div className="grid h-9 w-9 place-items-center rounded-xl" style={{ background: "var(--gradient-hero)" }}>
             <Sparkles className="h-5 w-5 text-white" />
           </div>
-          <span className="text-lg font-bold">Nimbus</span>
+          <span className="text-lg font-bold">Personal App</span>
         </div>
         <nav className="flex flex-col gap-1 px-3 py-4">
           {nav.map((item) => {
