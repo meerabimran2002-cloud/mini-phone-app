@@ -1,8 +1,9 @@
 import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
 import {
-  LayoutDashboard, CheckSquare, Bell, CloudSun, Calculator, Settings, Shield, LogOut, Sparkles, Menu,
+  LayoutDashboard, CheckSquare, Bell, CloudSun, Calculator, Settings, Shield, LogOut, Sparkles, Menu, Image as ImageIcon,
 } from "lucide-react";
+
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
