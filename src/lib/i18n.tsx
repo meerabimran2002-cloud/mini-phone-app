@@ -19,8 +19,8 @@ type Dict = Record<string, string>;
 
 const D: Record<LangCode, Dict> = {
   en: {
-    appName: "Nimbus",
-    tagline: "Your premium all-in-one productivity workspace.",
+    appName: "Personal App",
+    tagline: "Your personal all-in-one productivity workspace.",
     getStarted: "Get started",
     signIn: "Sign in",
     signUp: "Sign up",
@@ -37,6 +37,7 @@ const D: Record<LangCode, Dict> = {
     calculator: "Calculator",
     settings: "Settings",
     admin: "Admin",
+    photos: "Photos",
     welcomeBack: "Welcome back",
     todayTasks: "Today's tasks",
     upcomingAlarms: "Upcoming alarms",
@@ -44,6 +45,7 @@ const D: Record<LangCode, Dict> = {
     theme: "Theme",
     language: "Language",
     profile: "Profile",
+    ringtone: "Ringtone",
     save: "Save",
     add: "Add",
     edit: "Edit",
@@ -60,6 +62,7 @@ const D: Record<LangCode, Dict> = {
     noTasks: "No tasks yet. Create one to get started.",
     noAlarms: "No alarms set.",
   },
+
   ur: { appName: "Nimbus", tagline: "آپ کا پریمیم آل اِن وَن پروڈکٹیویٹی ورک اسپیس۔", getStarted: "شروع کریں", signIn: "سائن اِن", signUp: "سائن اپ", signOut: "سائن آؤٹ", email: "ای میل", password: "پاس ورڈ", name: "نام", forgotPassword: "پاس ورڈ بھول گئے؟", continueWithGoogle: "گوگل کے ساتھ جاری رکھیں", dashboard: "ڈیش بورڈ", tasks: "کام", alarms: "الارمز", weather: "موسم", calculator: "کیلکولیٹر", settings: "ترتیبات", admin: "ایڈمن", welcomeBack: "خوش آمدید", todayTasks: "آج کے کام", upcomingAlarms: "آنے والے الارمز", quickCalc: "فوری کیلکولیٹر", theme: "تھیم", language: "زبان", profile: "پروفائل", save: "محفوظ کریں", add: "شامل کریں", edit: "ترمیم", delete: "حذف کریں", search: "تلاش", all: "سب", completed: "مکمل", active: "فعال", high: "زیادہ", medium: "درمیانہ", low: "کم", addTask: "کام شامل کریں", addAlarm: "الارم شامل کریں", noTasks: "ابھی کوئی کام نہیں۔", noAlarms: "کوئی الارم نہیں۔" },
   ar: { appName: "Nimbus", tagline: "مساحة عملك المتميزة الشاملة للإنتاجية.", getStarted: "ابدأ الآن", signIn: "تسجيل الدخول", signUp: "إنشاء حساب", signOut: "تسجيل الخروج", email: "البريد الإلكتروني", password: "كلمة المرور", name: "الاسم", forgotPassword: "نسيت كلمة المرور؟", continueWithGoogle: "المتابعة باستخدام Google", dashboard: "لوحة التحكم", tasks: "المهام", alarms: "المنبهات", weather: "الطقس", calculator: "الآلة الحاسبة", settings: "الإعدادات", admin: "المسؤول", welcomeBack: "مرحبًا بعودتك", todayTasks: "مهام اليوم", upcomingAlarms: "المنبهات القادمة", quickCalc: "حاسبة سريعة", theme: "السمة", language: "اللغة", profile: "الملف الشخصي", save: "حفظ", add: "إضافة", edit: "تعديل", delete: "حذف", search: "بحث", all: "الكل", completed: "مكتمل", active: "نشط", high: "مرتفع", medium: "متوسط", low: "منخفض", addTask: "إضافة مهمة", addAlarm: "إضافة منبه", noTasks: "لا توجد مهام بعد.", noAlarms: "لا توجد منبهات." },
   hi: { appName: "Nimbus", tagline: "आपका प्रीमियम ऑल-इन-वन प्रोडक्टिविटी वर्कस्पेस।", getStarted: "शुरू करें", signIn: "साइन इन", signUp: "साइन अप", signOut: "साइन आउट", email: "ईमेल", password: "पासवर्ड", name: "नाम", forgotPassword: "पासवर्ड भूल गए?", continueWithGoogle: "Google के साथ जारी रखें", dashboard: "डैशबोर्ड", tasks: "कार्य", alarms: "अलार्म", weather: "मौसम", calculator: "कैलकुलेटर", settings: "सेटिंग्स", admin: "एडमिन", welcomeBack: "वापसी पर स्वागत है", todayTasks: "आज के कार्य", upcomingAlarms: "आगामी अलार्म", quickCalc: "त्वरित कैलकुलेटर", theme: "थीम", language: "भाषा", profile: "प्रोफ़ाइल", save: "सहेजें", add: "जोड़ें", edit: "संपादित", delete: "हटाएं", search: "खोजें", all: "सभी", completed: "पूर्ण", active: "सक्रिय", high: "उच्च", medium: "मध्यम", low: "निम्न", addTask: "कार्य जोड़ें", addAlarm: "अलार्म जोड़ें", noTasks: "अभी कोई कार्य नहीं।", noAlarms: "कोई अलार्म नहीं।" },
