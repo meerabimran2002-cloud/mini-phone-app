@@ -1,8 +1,9 @@
 import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
 import {
-  LayoutDashboard, CheckSquare, Bell, CloudSun, Calculator, Settings, Shield, LogOut, Sparkles, Menu,
+  LayoutDashboard, CheckSquare, Bell, CloudSun, Calculator, Settings, Shield, LogOut, Sparkles, Menu, Image as ImageIcon,
 } from "lucide-react";
+
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
@@ -37,11 +38,13 @@ function AppShell() {
     { to: "/dashboard", icon: LayoutDashboard, label: t("dashboard") },
     { to: "/tasks", icon: CheckSquare, label: t("tasks") },
     { to: "/alarms", icon: Bell, label: t("alarms") },
+    { to: "/photos", icon: ImageIcon, label: t("photos") },
     { to: "/weather", icon: CloudSun, label: t("weather") },
     { to: "/calculator", icon: Calculator, label: t("calculator") },
     { to: "/settings", icon: Settings, label: t("settings") },
     ...(isAdmin ? [{ to: "/admin", icon: Shield, label: t("admin") }] : []),
   ];
+
 
   return (
     <div className="relative min-h-screen bg-background">
@@ -55,7 +58,7 @@ function AppShell() {
           <div className="grid h-9 w-9 place-items-center rounded-xl" style={{ background: "var(--gradient-hero)" }}>
             <Sparkles className="h-5 w-5 text-white" />
           </div>
-          <span className="text-lg font-bold">Nimbus</span>
+          <span className="text-lg font-bold">Personal App</span>
         </div>
         <nav className="flex flex-col gap-1 px-3 py-4">
           {nav.map((item) => {

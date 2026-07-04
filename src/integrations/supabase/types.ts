@@ -21,6 +21,7 @@ export type Database = {
           id: string
           label: string
           repeat_days: number[]
+          ringtone: string
           time: string
           user_id: string
         }
@@ -30,6 +31,7 @@ export type Database = {
           id?: string
           label?: string
           repeat_days?: number[]
+          ringtone?: string
           time: string
           user_id: string
         }
@@ -39,7 +41,32 @@ export type Database = {
           id?: string
           label?: string
           repeat_days?: number[]
+          ringtone?: string
           time?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      photos: {
+        Row: {
+          caption: string | null
+          created_at: string
+          id: string
+          storage_path: string
+          user_id: string
+        }
+        Insert: {
+          caption?: string | null
+          created_at?: string
+          id?: string
+          storage_path: string
+          user_id: string
+        }
+        Update: {
+          caption?: string | null
+          created_at?: string
+          id?: string
+          storage_path?: string
           user_id?: string
         }
         Relationships: []

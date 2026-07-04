@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedWeatherRouteImport } from './routes/_authenticated/weather'
 import { Route as AuthenticatedTasksRouteImport } from './routes/_authenticated/tasks'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedPhotosRouteImport } from './routes/_authenticated/photos'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedCalculatorRouteImport } from './routes/_authenticated/calculator'
 import { Route as AuthenticatedAlarmsRouteImport } from './routes/_authenticated/alarms'
@@ -49,6 +50,11 @@ const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPhotosRoute = AuthenticatedPhotosRouteImport.update({
+  id: '/photos',
+  path: '/photos',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/alarms': typeof AuthenticatedAlarmsRoute
   '/calculator': typeof AuthenticatedCalculatorRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/photos': typeof AuthenticatedPhotosRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/tasks': typeof AuthenticatedTasksRoute
   '/weather': typeof AuthenticatedWeatherRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/alarms': typeof AuthenticatedAlarmsRoute
   '/calculator': typeof AuthenticatedCalculatorRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/photos': typeof AuthenticatedPhotosRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/tasks': typeof AuthenticatedTasksRoute
   '/weather': typeof AuthenticatedWeatherRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/_authenticated/alarms': typeof AuthenticatedAlarmsRoute
   '/_authenticated/calculator': typeof AuthenticatedCalculatorRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/photos': typeof AuthenticatedPhotosRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/tasks': typeof AuthenticatedTasksRoute
   '/_authenticated/weather': typeof AuthenticatedWeatherRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/alarms'
     | '/calculator'
     | '/dashboard'
+    | '/photos'
     | '/settings'
     | '/tasks'
     | '/weather'
@@ -125,6 +135,7 @@ export interface FileRouteTypes {
     | '/alarms'
     | '/calculator'
     | '/dashboard'
+    | '/photos'
     | '/settings'
     | '/tasks'
     | '/weather'
@@ -137,6 +148,7 @@ export interface FileRouteTypes {
     | '/_authenticated/alarms'
     | '/_authenticated/calculator'
     | '/_authenticated/dashboard'
+    | '/_authenticated/photos'
     | '/_authenticated/settings'
     | '/_authenticated/tasks'
     | '/_authenticated/weather'
@@ -192,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/photos': {
+      id: '/_authenticated/photos'
+      path: '/photos'
+      fullPath: '/photos'
+      preLoaderRoute: typeof AuthenticatedPhotosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -228,6 +247,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAlarmsRoute: typeof AuthenticatedAlarmsRoute
   AuthenticatedCalculatorRoute: typeof AuthenticatedCalculatorRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedPhotosRoute: typeof AuthenticatedPhotosRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedTasksRoute: typeof AuthenticatedTasksRoute
   AuthenticatedWeatherRoute: typeof AuthenticatedWeatherRoute
@@ -238,6 +258,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAlarmsRoute: AuthenticatedAlarmsRoute,
   AuthenticatedCalculatorRoute: AuthenticatedCalculatorRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedPhotosRoute: AuthenticatedPhotosRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedTasksRoute: AuthenticatedTasksRoute,
   AuthenticatedWeatherRoute: AuthenticatedWeatherRoute,

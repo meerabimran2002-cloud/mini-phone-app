@@ -44,11 +44,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Nimbus — All-in-One Productivity" },
-      { name: "description", content: "Tasks, alarms, weather, calculator and more in one premium workspace." },
-      { property: "og:title", content: "Nimbus — All-in-One Productivity" },
-      { property: "og:description", content: "Tasks, alarms, weather, calculator and more in one premium workspace." },
+      { title: "Personal App — Tasks, Alarms, Photos & More" },
+      { name: "description", content: "Your personal all-in-one workspace: tasks, alarms with ringtones, photos, weather and calculator." },
+      { property: "og:title", content: "Personal App" },
+      { property: "og:description", content: "Tasks, alarms, photos, weather and calculator in one personal workspace." },
       { property: "og:type", content: "website" },
+
     ],
     links: [
       { rel: "stylesheet", href: appCss },
