@@ -38,11 +38,13 @@ function AppShell() {
     { to: "/dashboard", icon: LayoutDashboard, label: t("dashboard") },
     { to: "/tasks", icon: CheckSquare, label: t("tasks") },
     { to: "/alarms", icon: Bell, label: t("alarms") },
+    { to: "/photos", icon: ImageIcon, label: t("photos") },
     { to: "/weather", icon: CloudSun, label: t("weather") },
     { to: "/calculator", icon: Calculator, label: t("calculator") },
     { to: "/settings", icon: Settings, label: t("settings") },
     ...(isAdmin ? [{ to: "/admin", icon: Shield, label: t("admin") }] : []),
   ];
+
 
   return (
     <div className="relative min-h-screen bg-background">
