@@ -129,8 +129,9 @@ function AlarmsPage() {
 
   const add = useMutation({
     mutationFn: async () => {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
       const { error } = await supabase.from("alarms").insert({
-        user_id: user!.id, label: label || "Alarm", time, repeat_days: days, ringtone,
+        user_id: user!.id, label: label || "Alarm", time, repeat_days: days, ringtone, timezone: tz,
       });
       if (error) throw error;
     },
@@ -157,19 +158,50 @@ function AlarmsPage() {
 
   const stopRinging = () => { player.stop(); setRingingId(null); };
 
+  const [pushState, setPushState] = useState<"idle" | "enabling" | "on" | "off">("idle");
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!("Notification" in window) || !("serviceWorker" in navigator)) { setPushState("off"); return; }
+    if (Notification.permission === "granted") {
+      navigator.serviceWorker.getRegistration().then((reg) =>
+        reg?.pushManager.getSubscription().then((s) => setPushState(s ? "on" : "off")),
+      );
+    } else setPushState("off");
+  }, []);
+
+  const enablePush = async () => {
+    setPushState("enabling");
+    const { enablePushForCurrentUser, registerServiceWorker } = await import("@/lib/push");
+    await registerServiceWorker();
+    const res = await enablePushForCurrentUser();
+    if (res.ok) { toast.success("Background alarms enabled 🔔"); setPushState("on"); }
+    else { toast.error(res.reason || "Could not enable notifications"); setPushState("off"); }
+  };
+
   return (
     <div className="space-y-6">
       <header className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight">{t("alarms")}</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Rings on time with your chosen sound. Keep this tab open.</p>
+          <p className="mt-1 text-sm text-muted-foreground">Rings on time — even when the app is closed, once notifications are on.</p>
         </div>
-        {ringingId && (
-          <button onClick={stopRinging} className="flex items-center gap-2 rounded-xl bg-destructive px-4 py-2.5 text-sm font-semibold text-destructive-foreground shadow-lg animate-pulse">
-            <Square className="h-4 w-4" /> Stop
-          </button>
-        )}
+        <div className="flex items-center gap-2">
+          {pushState !== "on" && (
+            <button onClick={enablePush} disabled={pushState === "enabling"} className="flex items-center gap-2 rounded-xl bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground shadow-lg disabled:opacity-50">
+              <Bell className="h-3.5 w-3.5" /> {pushState === "enabling" ? "Enabling…" : "Enable background alarms"}
+            </button>
+          )}
+          {pushState === "on" && (
+            <span className="rounded-xl bg-primary/10 px-3 py-2 text-xs font-semibold text-primary">🔔 Background on</span>
+          )}
+          {ringingId && (
+            <button onClick={stopRinging} className="flex items-center gap-2 rounded-xl bg-destructive px-4 py-2.5 text-sm font-semibold text-destructive-foreground shadow-lg animate-pulse">
+              <Square className="h-4 w-4" /> Stop
+            </button>
+          )}
+        </div>
       </header>
+
 
       <div className="rounded-2xl card-elevated p-4 sm:p-6 space-y-4">
         <div className="grid gap-3 sm:grid-cols-[1fr_auto]">

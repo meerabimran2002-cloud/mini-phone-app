@@ -1,0 +1,1 @@
+ALTER TABLE public.alarms ADD COLUMN IF NOT EXISTS timezone text NOT NULL DEFAULT 'UTC';
