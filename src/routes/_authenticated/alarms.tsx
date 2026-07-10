@@ -129,8 +129,9 @@ function AlarmsPage() {
 
   const add = useMutation({
     mutationFn: async () => {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
       const { error } = await supabase.from("alarms").insert({
-        user_id: user!.id, label: label || "Alarm", time, repeat_days: days, ringtone,
+        user_id: user!.id, label: label || "Alarm", time, repeat_days: days, ringtone, timezone: tz,
       });
       if (error) throw error;
     },
