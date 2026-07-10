@@ -95,6 +95,14 @@ function RootComponent() {
     return () => sub.subscription.unsubscribe();
   }, [router, queryClient]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.self !== window.top) return; // skip inside preview iframe
+    if (!("serviceWorker" in navigator)) return;
+    navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch(() => {});
+  }, []);
+
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
