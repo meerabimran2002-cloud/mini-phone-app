@@ -50,13 +50,12 @@ export const Route = createFileRoute("/api/public/hooks/check-alarms")({
         const results: Array<{ id: string; sent: number; removed: number }> = [];
         for (const a of alarms || []) {
           const [h, m] = String(a.time).split(":").map(Number);
-          const nowMin = now.getUTCHours() * 60 + now.getUTCMinutes();
-          const alarmMin = h * 60 + m;
-          if (nowMin !== alarmMin) continue;
+          const p = tzParts(a.timezone || "UTC");
+          if (p.hour !== h || p.minute !== m) continue;
 
-          // Repeat-days filter (0=Sun..6=Sat, UTC)
+          // Repeat-days filter (0=Sun..6=Sat, in alarm's timezone)
           const days: number[] = a.repeat_days || [];
-          if (days.length > 0 && !days.includes(now.getUTCDay())) continue;
+          if (days.length > 0 && !days.includes(p.day)) continue;
 
           // Debounce: don't fire twice in same minute
           if (a.last_fired_at) {
