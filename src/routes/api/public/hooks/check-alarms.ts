@@ -20,21 +20,32 @@ export const Route = createFileRoute("/api/public/hooks/check-alarms")({
         });
 
         const now = new Date();
-        // Query all enabled alarms
         const { data: alarms, error } = await admin
           .from("alarms")
-          .select("id,user_id,label,time,repeat_days,enabled,last_fired_at")
+          .select("id,user_id,label,time,repeat_days,enabled,last_fired_at,timezone")
           .eq("enabled", true);
         if (error) {
           return Response.json({ ok: false, error: error.message }, { status: 500 });
         }
 
-        // We evaluate "should ring now?" server-side per user timezone.
-        // Since we don't store timezones, we ring based on the user's LOCAL wall time,
-        // which for a personal app we approximate by comparing minutes across all timezones
-        // won't work. Simpler pragmatic approach: fire when server UTC minute matches.
-        // NOTE: alarm times are stored as HH:MM strings — treated as UTC here.
-        // If the user wants local time, they can adjust. This keeps it simple.
+        // Compute wall-clock hour/minute/weekday in a given IANA timezone.
+        function tzParts(tz: string) {
+          try {
+            const fmt = new Intl.DateTimeFormat("en-US", {
+              timeZone: tz || "UTC",
+              hour: "2-digit", minute: "2-digit", weekday: "short", hour12: false,
+            });
+            const parts = fmt.formatToParts(now);
+            const get = (t: string) => parts.find((p) => p.type === t)?.value || "";
+            const hour = parseInt(get("hour"), 10) % 24;
+            const minute = parseInt(get("minute"), 10);
+            const wk = get("weekday");
+            const map: Record<string, number> = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+            return { hour, minute, day: map[wk] ?? now.getUTCDay() };
+          } catch {
+            return { hour: now.getUTCHours(), minute: now.getUTCMinutes(), day: now.getUTCDay() };
+          }
+        }
 
         const results: Array<{ id: string; sent: number; removed: number }> = [];
         for (const a of alarms || []) {
