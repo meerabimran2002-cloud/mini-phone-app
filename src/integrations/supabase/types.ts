@@ -24,6 +24,7 @@ export type Database = {
           repeat_days: number[]
           ringtone: string
           time: string
+          timezone: string
           user_id: string
         }
         Insert: {
@@ -35,6 +36,7 @@ export type Database = {
           repeat_days?: number[]
           ringtone?: string
           time: string
+          timezone?: string
           user_id: string
         }
         Update: {
@@ -46,6 +48,7 @@ export type Database = {
           repeat_days?: number[]
           ringtone?: string
           time?: string
+          timezone?: string
           user_id?: string
         }
         Relationships: []
