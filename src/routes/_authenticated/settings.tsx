@@ -8,6 +8,16 @@ import { useI18n, LANGUAGES, type LangCode } from "@/lib/i18n";
 import { useTheme, THEMES, type ThemeId } from "@/lib/theme-provider";
 
 export const Route = createFileRoute("/_authenticated/settings")({
+  head: () => ({
+    meta: [
+      { title: "Settings — Personal App" },
+      { name: "description", content: "Update your profile, photo, bio, theme and language in Personal App." },
+      { property: "og:title", content: "Settings — Personal App" },
+      { property: "og:description", content: "Personalize your Personal App account and preferences." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   component: SettingsPage,
 });
 

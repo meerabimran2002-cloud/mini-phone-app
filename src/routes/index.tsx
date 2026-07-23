@@ -7,6 +7,10 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Personal App" },
       { name: "description", content: "Your personal productivity workspace: tasks, alarms, weather, photos and more." },
+      { property: "og:title", content: "Personal App" },
+      { property: "og:description", content: "Open your private productivity app with tasks, alarms, photos, weather and calculator." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   beforeLoad: async () => {

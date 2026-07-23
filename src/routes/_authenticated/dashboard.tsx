@@ -6,6 +6,16 @@ import { useAuth } from "@/hooks/use-auth";
 import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
+  head: () => ({
+    meta: [
+      { title: "Dashboard — Personal App" },
+      { name: "description", content: "Your Personal App dashboard with today's tasks and upcoming alarms." },
+      { property: "og:title", content: "Dashboard — Personal App" },
+      { property: "og:description", content: "See your tasks, alarms and daily workspace summary in Personal App." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   component: Dashboard,
 });
 
