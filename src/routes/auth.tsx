@@ -12,7 +12,16 @@ const searchSchema = z.object({ mode: z.enum(["signin", "signup"]).optional() })
 
 export const Route = createFileRoute("/auth")({
   validateSearch: (s) => searchSchema.parse(s),
-  head: () => ({ meta: [{ title: "Sign in — Nimbus" }] }),
+  head: () => ({
+    meta: [
+      { title: "Sign in — Personal App" },
+      { name: "description", content: "Sign in or create an account for your private Personal App workspace." },
+      { property: "og:title", content: "Sign in — Personal App" },
+      { property: "og:description", content: "Access your tasks, alarms, photos, weather and calculator in Personal App." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   component: AuthPage,
 });
 
@@ -72,7 +81,7 @@ function AuthPage() {
           <div className="grid h-9 w-9 place-items-center rounded-xl" style={{ background: "var(--gradient-hero)" }}>
             <Sparkles className="h-5 w-5 text-white" />
           </div>
-          <span className="text-lg font-bold">Nimbus</span>
+          <span className="text-lg font-bold">Personal App</span>
         </Link>
 
         <div className="rounded-3xl card-elevated p-8">

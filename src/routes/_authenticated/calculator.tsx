@@ -3,6 +3,16 @@ import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/_authenticated/calculator")({
+  head: () => ({
+    meta: [
+      { title: "Calculator — Personal App" },
+      { name: "description", content: "Use a basic or scientific calculator with history in Personal App." },
+      { property: "og:title", content: "Calculator — Personal App" },
+      { property: "og:description", content: "Calculate quickly with basic and scientific modes in Personal App." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   component: CalcPage,
 });
 

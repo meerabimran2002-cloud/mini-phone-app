@@ -5,6 +5,16 @@ import { MapPin, Search, Wind, Droplets, Thermometer } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/_authenticated/weather")({
+  head: () => ({
+    meta: [
+      { title: "Weather — Personal App" },
+      { name: "description", content: "Check live local weather and a seven-day forecast in Personal App." },
+      { property: "og:title", content: "Weather — Personal App" },
+      { property: "og:description", content: "Search city weather and forecasts inside Personal App." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   component: WeatherPage,
 });
 

@@ -8,6 +8,16 @@ import { useAuth } from "@/hooks/use-auth";
 import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/_authenticated/alarms")({
+  head: () => ({
+    meta: [
+      { title: "Alarms — Personal App" },
+      { name: "description", content: "Create personal alarms with ringtones and background notifications." },
+      { property: "og:title", content: "Alarms — Personal App" },
+      { property: "og:description", content: "Set alarms with custom ringtones in Personal App." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   component: AlarmsPage,
 });
 

@@ -7,6 +7,16 @@ import { useAuth } from "@/hooks/use-auth";
 import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/_authenticated/admin")({
+  head: () => ({
+    meta: [
+      { title: "Admin Portal — Personal App" },
+      { name: "description", content: "Admin portal for viewing Personal App users and profile activity." },
+      { property: "og:title", content: "Admin Portal — Personal App" },
+      { property: "og:description", content: "View registered users and profile details in the Personal App admin portal." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   component: AdminPage,
 });
 

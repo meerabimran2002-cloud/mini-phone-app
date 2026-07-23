@@ -8,6 +8,16 @@ import { useAuth } from "@/hooks/use-auth";
 import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/_authenticated/photos")({
+  head: () => ({
+    meta: [
+      { title: "Photos — Personal App" },
+      { name: "description", content: "Upload and manage private pictures in your Personal App account." },
+      { property: "og:title", content: "Photos — Personal App" },
+      { property: "og:description", content: "Keep your personal photos private in Personal App." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   component: PhotosPage,
 });
 

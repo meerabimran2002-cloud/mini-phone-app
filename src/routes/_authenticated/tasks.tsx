@@ -8,6 +8,16 @@ import { useAuth } from "@/hooks/use-auth";
 import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/_authenticated/tasks")({
+  head: () => ({
+    meta: [
+      { title: "Tasks — Personal App" },
+      { name: "description", content: "Add, search, prioritize and complete your personal tasks." },
+      { property: "og:title", content: "Tasks — Personal App" },
+      { property: "og:description", content: "Manage your daily tasks privately in Personal App." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   component: TasksPage,
 });
 

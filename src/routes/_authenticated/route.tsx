@@ -90,6 +90,16 @@ function AppShell() {
             <Menu className="h-5 w-5" />
           </button>
           <div className="ml-auto flex items-center gap-3">
+            {isAdmin && (
+              <Link
+                to="/admin"
+                className="flex items-center gap-2 rounded-xl bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90"
+              >
+                <Shield className="h-4 w-4" />
+                <span className="hidden sm:inline">Admin Portal</span>
+                <span className="sm:hidden">Admin</span>
+              </Link>
+            )}
             <div className="hidden text-right sm:block">
               <div className="text-xs text-muted-foreground">{session.user.email}</div>
             </div>
