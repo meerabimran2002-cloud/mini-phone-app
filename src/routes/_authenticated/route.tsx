@@ -85,15 +85,21 @@ function AppShell() {
 
       {/* Main */}
       <div className="lg:pl-64">
-        <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-border bg-background/70 px-4 backdrop-blur-xl lg:px-8">
-          <button onClick={() => setOpen(true)} className="rounded-lg p-2 hover:bg-accent lg:hidden">
+        <header className="sticky top-0 z-20 flex h-16 items-center gap-2 border-b border-border bg-background/70 px-3 backdrop-blur-xl sm:px-4 lg:px-8">
+          <button onClick={() => setOpen(true)} aria-label="Open menu" className="rounded-lg p-2 hover:bg-accent lg:hidden">
             <Menu className="h-5 w-5" />
           </button>
-          <div className="ml-auto flex items-center gap-3">
+          <Link to="/dashboard" className="flex items-center gap-2 lg:hidden">
+            <div className="grid h-8 w-8 place-items-center rounded-lg" style={{ background: "var(--gradient-hero)" }}>
+              <Sparkles className="h-4 w-4 text-white" />
+            </div>
+            <span className="text-sm font-bold">Personal App</span>
+          </Link>
+          <div className="ml-auto flex items-center gap-2 sm:gap-3">
             {isAdmin && (
               <Link
                 to="/admin"
-                className="flex items-center gap-2 rounded-xl bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90"
+                className="flex items-center gap-2 rounded-xl bg-primary px-2.5 py-2 text-xs sm:text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90"
               >
                 <Shield className="h-4 w-4" />
                 <span className="hidden sm:inline">Admin Portal</span>
@@ -101,14 +107,14 @@ function AppShell() {
               </Link>
             )}
             <div className="hidden text-right sm:block">
-              <div className="text-xs text-muted-foreground">{session.user.email}</div>
+              <div className="max-w-[180px] truncate text-xs text-muted-foreground">{session.user.email}</div>
             </div>
-            <div className="grid h-9 w-9 place-items-center rounded-full text-sm font-semibold text-primary-foreground" style={{ background: "var(--gradient-hero)" }}>
+            <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-sm font-semibold text-primary-foreground" style={{ background: "var(--gradient-hero)" }}>
               {(session.user.email ?? "?").charAt(0).toUpperCase()}
             </div>
           </div>
         </header>
-        <main className="relative z-10 mx-auto max-w-7xl px-4 py-8 lg:px-8">
+        <main className="relative z-10 mx-auto max-w-7xl px-4 py-6 sm:py-8 lg:px-8">
           <Outlet />
         </main>
       </div>
