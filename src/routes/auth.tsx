@@ -64,6 +64,26 @@ function AuthPage() {
     } finally { setBusy(false); }
   };
 
+  return (
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="animate-blob absolute -top-32 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full opacity-30" style={{ background: "var(--gradient-hero)", filter: "blur(100px)" }} />
+      </div>
+
+      <div className="relative w-full max-w-md">
+        <Link to="/" className="mb-6 flex items-center justify-center gap-2">
+          <div className="grid h-9 w-9 place-items-center rounded-xl" style={{ background: "var(--gradient-hero)" }}>
+            <Sparkles className="h-5 w-5 text-white" />
+          </div>
+          <span className="text-lg font-bold">Personal App</span>
+        </Link>
+
+        <div className="rounded-3xl card-elevated p-5 sm:p-8">
+          <h1 className="text-xl sm:text-2xl font-bold">{isSignUp ? t("signUp") : t("welcomeBack")}</h1>
+          <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
+            {isSignUp ? "Create your account in seconds." : "Sign in to continue to your workspace."}
+          </p>
+
           <form onSubmit={submit} className="mt-6 space-y-3 sm:space-y-4">
             {isSignUp && (
               <input type="text" placeholder={t("name")} value={name} onChange={(e) => setName(e.target.value)} className="w-full rounded-xl border border-input bg-background px-4 py-3 text-base sm:text-sm outline-none focus:ring-2 focus:ring-ring" />
