@@ -60,7 +60,12 @@ function AuthPage() {
         toast.success("Welcome back!");
       }
     } catch (err: any) {
-      toast.error(err.message ?? "Authentication failed");
+      const msg = String(err?.message ?? "");
+      if (/failed to fetch|network|load failed/i.test(msg)) {
+        toast.error("Server se connect nahi ho saka. Internet check karein ya thodi der baad dobara try karein.");
+      } else {
+        toast.error(msg || "Authentication failed");
+      }
     } finally { setBusy(false); }
   };
 
@@ -96,7 +101,7 @@ function AuthPage() {
             </button>
           </form>
 
-          <button onClick={() => setIsSignUp(!isSignUp)} className="mt-6 w-full text-center text-sm text-muted-foreground hover:text-foreground">
+          <button type="button" onClick={() => setIsSignUp(!isSignUp)} className="mt-6 w-full text-center text-sm text-muted-foreground hover:text-foreground">
             {isSignUp ? "Already have an account? Sign in" : "New here? Create an account"}
           </button>
         </div>
